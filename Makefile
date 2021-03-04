@@ -30,7 +30,7 @@ help:
 	echo "help		    - show this message"
 
 build:
-	mvn clean install; \
+	mvn clean install \
 	docker build --force-rm -t java-k8s .
 
 run-db: stop-db rm-db
