@@ -1,5 +1,5 @@
 # defaul shell
-SHELL = /bin/bash
+SHELL = C:\Windows\System32\cmd.exe
 
 # Rule "help"
 .PHONY: help
@@ -30,7 +30,7 @@ help:
 	echo "help		    - show this message"
 
 build:
-	mvn clean install \
+	mvn clean install; \
 	docker build --force-rm -t java-k8s .
 
 run-db: stop-db rm-db
@@ -64,7 +64,7 @@ k-build-app:
 	mvn clean install; \
 
 k-build-image:
-	eval $$(minikube -p dev.to docker-env) && docker build --force-rm -t java-k8s .;
+	eval $(minikube -p dev.to docker-env) && docker build --force-rm -t java-k8s .;
 
 k-deploy-app:
 	kubectl apply -f k8s/app/;
